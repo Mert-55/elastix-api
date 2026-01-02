@@ -89,31 +89,41 @@ uvicorn api.app:app --reload
 | `GET` | `/elasticity` | Calculate price elasticity for products |
 | `GET` | `/elasticity/segments` | Elasticity by RFM segment |
 
-### Simulation
+### Dashboard
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `POST` | `/simulate` | Simulate price change impact |
-| `GET` | `/simulations` | List saved simulations |
-| `POST` | `/simulations` | Create new simulation |
-| `PUT` | `/simulations/{id}` | Update simulation |
-| `DELETE` | `/simulations/{id}` | Delete simulation |
-
-### Dashboard Data
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/dashboard/kpis` | Aggregated KPI metrics |
-| `GET` | `/dashboard/segments` | Segment distribution (Treemap) |
-| `GET` | `/dashboard/trends` | Time-series data (Area Chart) |
+| `GET` | `/dashboard/kpis` | Segment KPI metrics (priceSensitivity, walletShare, churnRisk) |
+| `GET` | `/dashboard/segments` | Segment distribution for TreeMap visualization |
+| `GET` | `/dashboard/trends` | Time-series revenue data by segment for Area Chart |
 
 ### Stock Items
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/stock-items` | Search products |
-| `GET` | `/stock-items/{code}` | Product details with elasticity |
+| `GET` | `/stock-items` | Search products with elasticity data |
+| `GET` | `/stock-items/{code}` | Product details with full elasticity info |
 
+### Simulation
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/simulate` | Quick simulation of price change impact |
+| `GET` | `/simulations` | List saved simulations |
+| `POST` | `/simulations` | Create new simulation |
+| `GET` | `/simulations/{id}` | Get simulation by ID |
+| `PUT` | `/simulations/{id}` | Update simulation |
+| `DELETE` | `/simulations/{id}` | Delete simulation |
+| `GET` | `/simulations/{id}/metrics` | Get segment-based simulation metrics |
+
+### Transactions
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/transactions/{transaction_id}` | Get a single transaction by ID |
+| `PUT` | `/transactions/{transaction_id}` | Update a transaction (partial updates supported) |
+| `DELETE` | `/transactions/{transaction_id}` | Delete a single transaction |
+| `DELETE` | `/transactions?confirm=true` | Delete all transactions (requires confirmation) |
 ---
 
 ## 🔧 Configuration

@@ -1,0 +1,2 @@
+# Requirements for import_transactions.py script
+httpx>=0.27.0
