@@ -358,7 +358,7 @@ async def compute_simulation_metrics(
         )
 
     return SimulationMetricsResponse(
-        Champions=_compute_segment_metrics("Champion"),
+        Champion=_compute_segment_metrics("Champion"),
         LoyalCustomers=_compute_segment_metrics("LoyalCustomers"),
         PotentialLoyalists=_compute_segment_metrics("PotentialLoyalists"),
         AtRisk=_compute_segment_metrics("AtRisk"),
