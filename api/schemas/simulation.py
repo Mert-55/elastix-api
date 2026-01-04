@@ -154,7 +154,7 @@ class SegmentSimulationMetrics(BaseModel):
 class SimulationMetricsResponse(BaseModel):
     """Response schema for segment-based simulation metrics."""
 
-    Champions: SegmentSimulationMetrics
+    Champion: SegmentSimulationMetrics
     LoyalCustomers: SegmentSimulationMetrics
     PotentialLoyalists: SegmentSimulationMetrics
     AtRisk: SegmentSimulationMetrics
