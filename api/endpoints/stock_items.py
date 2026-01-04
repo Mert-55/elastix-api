@@ -46,6 +46,15 @@ async def list_stock_items(
         ge=0,
         description="Number of items to skip (for pagination)",
     ),
+    sort_by: Optional[str] = Query(
+        default=None,
+        description="Sort order: quantity_asc, quantity_desc, revenue_asc, revenue_desc",
+        pattern="^(quantity_asc|quantity_desc|revenue_asc|revenue_desc)$"
+    ),
+    segment_filter: Optional[str] = Query(
+        default=None,
+        description="Filter by primary customer segment (e.g. Champion, LoyalCustomers)",
+    ),
     db: AsyncSession = Depends(get_db),
 ) -> StockItemGridResponse:
     """
@@ -66,6 +75,8 @@ async def list_stock_items(
         offset=offset,
         start_date=start_date,
         end_date=end_date,
+        sort_by=sort_by,
+        segment_filter=segment_filter,
     )
 
 

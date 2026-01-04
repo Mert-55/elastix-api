@@ -119,6 +119,16 @@ class StockItemGridItem(BaseModel):
         alias="revenuePotential",
         description="Estimated revenue potential score",
     )
+    total_quantity: int = Field(
+        0,
+        alias="totalQuantity",
+        description="Total units sold",
+    )
+    total_revenue: float = Field(
+        0.0,
+        alias="totalRevenue",
+        description="Total revenue generated",
+    )
     segment: str = Field(
         ...,
         description="Primary customer segment for this product",
