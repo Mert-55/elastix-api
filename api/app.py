@@ -59,9 +59,16 @@ async def clear_cache():
 
 @app.get("/cache/stats", tags=["admin"])
 async def cache_stats():
-    """Get cache statistics for debugging."""
-    from api.services.cache import _cache
-    return {
-        "total_keys": len(_cache),
-        "keys": list(_cache.keys()),
-    }
+    """Get cache statistics for monitoring and debugging.
+    
+    Returns:
+        - entries: Number of cached items
+        - hits: Cache hit count
+        - misses: Cache miss count
+        - hit_rate: Cache hit rate percentage
+        - keys: List of active cache keys
+    """
+    from api.services.cache import _cache, get_cache_stats
+    stats = get_cache_stats()
+    stats["keys"] = list(_cache.keys())
+    return stats

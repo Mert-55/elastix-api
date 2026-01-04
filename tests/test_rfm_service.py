@@ -40,13 +40,30 @@ class TestHelperFunctions:
         assert _quantile_bin_reverse(50, 20, 40) == "L"
 
     def test_compute_tertiles(self):
-        """Tertiles should split values at 33% and 66%."""
+        """Tertiles should split values at 33% and 66% using linear interpolation."""
         values = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         q33, q66 = _compute_tertiles(values)
-        # int(9*0.33) = 2, so index 2 -> value 3
-        # int(9*0.66) = 5, so index 5 -> value 6
-        assert q33 == 3
-        assert q66 == 6
+        # With linear interpolation on 9 values:
+        # idx33 = 8 * 0.33 = 2.64 → interpolate between index 2 and 3
+        # value = 3 + 0.64 * (4-3) = 3.64
+        # idx66 = 8 * 0.66 = 5.28 → interpolate between index 5 and 6
+        # value = 6 + 0.28 * (7-6) = 6.28
+        assert abs(q33 - 3.64) < 0.1
+        assert abs(q66 - 6.28) < 0.1
+    
+    def test_compute_tertiles_equal_values(self):
+        """When all values are equal, both tertiles should be that value."""
+        values = [5, 5, 5, 5, 5]
+        q33, q66 = _compute_tertiles(values)
+        assert q33 == 5
+        assert q66 == 5
+    
+    def test_compute_tertiles_single_value(self):
+        """Single value should return itself for both tertiles."""
+        values = [42]
+        q33, q66 = _compute_tertiles(values)
+        assert q33 == 42
+        assert q66 == 42
 
     def test_build_segment_label(self):
         """Segment label combines R/F/M bins."""

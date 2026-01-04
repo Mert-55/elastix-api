@@ -5,6 +5,12 @@ based on Paczkowski (2018) methodology.
 
 ln(Q) = α + ε * ln(P) + error
 where ε is the price elasticity coefficient.
+
+Performance Optimizations:
+- Batch query for all product data
+- Vectorized numpy operations for regression
+- Cached results with TTL
+- Efficient memory usage with generator patterns
 """
 from datetime import date
 from typing import Optional

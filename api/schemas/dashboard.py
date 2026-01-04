@@ -78,7 +78,7 @@ class TreeMapResponse(BaseModel):
 class RevenueTrendItem(BaseModel):
     """Single data point for revenue trends area chart."""
 
-    Champions: float = 0.0
+    Champion: float = 0.0
     LoyalCustomers: float = 0.0
     PotentialLoyalists: float = 0.0
     AtRisk: float = 0.0
