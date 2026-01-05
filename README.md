@@ -143,7 +143,7 @@ CORS_ORIGINS=http://localhost:5173
 
 - Paczkowski, W. R. (2018). *Pricing Analytics*. Routledge.
 - Percival, H., & Gregory, B. (2020). *Architecture Patterns with Python*. O'Reilly. 
-
+- [ecommerce-data source](https://www.kaggle.com/datasets/carrie1/ecommerce-data)
 ---
 
 ## 🔗 Related
