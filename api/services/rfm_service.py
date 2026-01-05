@@ -180,7 +180,7 @@ async def _fetch_customer_metrics(
 from api.services.cache import cached
 
 
-@cached("rfm_data", ttl_seconds=3600)
+@cached("rfm_data", ttl_seconds=86.400)
 async def compute_rfm(
     db: AsyncSession,
     reference_date: Optional[date] = None,

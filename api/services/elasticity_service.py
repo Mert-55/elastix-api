@@ -28,7 +28,7 @@ MIN_SAMPLE_SIZE = 3  # Minimum data points required for regression
 IQR_MULTIPLIER = 1.5  # Multiplier for IQR-based outlier detection
 
 
-@cached("elasticity", ttl_seconds=3600)
+@cached("elasticity", ttl_seconds=86.400)
 async def calculate_elasticity(
     db: AsyncSession,
     stock_codes: Optional[list[str]] = None,

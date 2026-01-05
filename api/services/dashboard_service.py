@@ -123,7 +123,7 @@ class RFMAnalysisData:
         self.total_revenue = max(self.total_revenue, 1.0)
 
 
-@cached("rfm_analysis_data", ttl_seconds=3600)
+@cached("rfm_analysis_data", ttl_seconds=86.400)
 async def _get_rfm_analysis_data(
     db: AsyncSession,
     reference_date: Optional[date] = None,
@@ -144,7 +144,7 @@ async def _get_rfm_analysis_data(
 # KPI METRICS
 # =============================================================================
 
-@cached("kpi_metrics", ttl_seconds=3600)
+@cached("kpi_metrics", ttl_seconds=86.400)
 async def compute_kpi_metrics(
     db: AsyncSession,
     reference_date: Optional[date] = None,
@@ -302,7 +302,7 @@ def _empty_kpi_response() -> KPIMetricsResponse:
 # SEGMENT TREEMAP
 # =============================================================================
 
-@cached("segment_treemap", ttl_seconds=3600)
+@cached("segment_treemap", ttl_seconds=86.400)
 async def compute_segment_treemap(
     db: AsyncSession,
     reference_date: Optional[date] = None,
@@ -402,7 +402,7 @@ def _extract_rfm_score(raw_segment: str) -> Optional[float]:
 # REVENUE TRENDS
 # =============================================================================
 
-@cached("revenue_trends", ttl_seconds=3600)
+@cached("revenue_trends", ttl_seconds=86.400)
 async def compute_revenue_trends(
     db: AsyncSession,
     reference_date: Optional[date] = None,

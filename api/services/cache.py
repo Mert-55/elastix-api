@@ -138,7 +138,7 @@ def cached(prefix: str, ttl_seconds: Optional[int] = DEFAULT_TTL_SECONDS):
     - Thread-safe via asyncio patterns
     
     Usage:
-        @cached("kpi_metrics", ttl_seconds=3600)
+        @cached("kpi_metrics", ttl_seconds=86.400)
         async def compute_kpi_metrics(db, start_date, end_date):
             ...
     """
