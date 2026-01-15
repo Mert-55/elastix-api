@@ -1,9 +1,3 @@
-Keine Sorge! NumPy wirkt am Anfang oft einschüchternd, weil es sehr mathematisch aussieht. Aber im Grunde ist es nur ein extrem effizienter Werkzeugkasten, um mit Listen von Zahlen zu rechnen.
-
-Wir gehen den Code Schritt für Schritt durch, als würden wir ein Kochrezept lesen.
-
----
-
 ### Schritt 1: Die Daten vorbereiten (Zutaten bereitstellen)
 
 Ganz am Anfang passiert etwas Simples, aber Wichtiges:
@@ -143,5 +137,3 @@ Da wir vorhin alles logarithmiert haben (`np.log`), sind die Zahlen für Mensche
 3. **Log-Log** macht aus einer komplizierten Kurve eine einfache Gerade.
 4. **lstsq** zieht die "perfekte Linie" durch die Punktwolke.
 5. Die **Steigung** dieser Linie ist genau die Zahl, die du suchst (Elastizität).
-
-**Möchtest du, dass ich dir speziell erkläre, wie man das Ergebnis (`elasticity` = z.B. -1.5) betriebswirtschaftlich interpretiert?**
