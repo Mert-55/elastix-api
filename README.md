@@ -21,6 +21,10 @@
 
 ---
 
+## Live Preview
+
+elastix-api on https://elastix-api.onrender.com/docs
+
 ## 🏗️ Architecture
 
 ```
