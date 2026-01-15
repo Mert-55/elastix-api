@@ -1,7 +1,3 @@
-Das sieht **sehr solide** und durchdacht aus. Es ist weit mehr als nur ein "Tutorial-Code", da es wichtige Edge-Cases (Randfälle) abfängt, die in der Praxis oft zu Abstürzen oder falschen Analysen führen.
-
-Hier ist die Analyse deiner "Zutaten" und der Logik dahinter, wieder Schritt für Schritt.
-
 ### 1. Das Herzstück: Die SQL-Abfrage (`_fetch_customer_metrics`)
 
 Das ist der wichtigste Teil für die Performance. Du machst das genau richtig: **Datenbank arbeiten lassen, nicht Python.**
@@ -57,29 +53,3 @@ Du erkennst das Problem und schaltest auf eine "Notfall-Logik" um, die den Berei
 
 * *Vorteil:* Der Code stürzt nicht ab.
 * *Interpretation:* Wenn du Super-Kunden mit 100 Bestellungen hast, landen die immer noch im "High"-Segment, während die Masse der "Einmalkäufer" im "Low"-Segment landet. Das rettet die Analyse bei schiefen Datenverteilungen.
-
-### 4. Zusammenfassung & Akkuratesse
-
-Ist die Logik akkurat? **Ja.**
-
-Hier ist eine visuelle Zusammenfassung dessen, was dein Code baut (Der RFM Cube):
-
-* **Recency (R):** Wie frisch ist der Kontakt? (Reverse Logic ✅)
-* **Frequency (F):** Wie oft kommen sie wieder? (Distinct Invoices ✅)
-* **Monetary (M):** Wie viel Geld lassen sie da? (Sum Revenue ✅)
-
-### Ein kleiner Verbesserungsvorschlag (Next Step)
-
-Einen winzigen Punkt könnte man noch optimieren, falls du diesen Code in Produktion nimmst.
-
-In der Funktion `_compute_tertiles`:
-Wenn du den "Notfall-Modus" (`if q33 == q66`) benutzt, teilst du die Spanne (Range) mathematisch durch 3.
-Bei **Frequency** (Anzahl Käufe) sind das aber oft Ganzzahlen (Integers).
-
-* Beispiel: Min=1, Max=4. Range=3.
-* Grenzen: 1+1=2, 1+2=3.
-* Das funktioniert super.
-
-Bei **Monetary** (Geld) kann das aber krumme Werte ergeben, die schwer zu erklären sind. Das ist technisch kein Fehler, aber für Business-Leute manchmal verwirrend ("Warum ist die Grenze bei 33.33€?").
-
-**Möchtest du, dass wir eine kleine Hilfsfunktion schreiben, die aus diesen Segmenten ("RH_FH_MH") automatisch lesbare Kundengruppen generiert (z.B. "Champions", "Verlorene Kunden", "Neulinge")?** Das macht den Output für den Endnutzer viel wertvoller.
